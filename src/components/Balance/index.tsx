@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { formatEther } from '@ethersproject/units';
 import { Box } from '@material-ui/core';
+import { useAppSelector } from '../../redux/hooks';
+import { accountSelector } from '../../redux/account/selectors';
 
 const Balance = () => {
   const { account, library, chainId } = useWeb3React();
   const [balance, setBalance] = useState<string>();
+  const { ethExchangeRate } = useAppSelector(accountSelector);
 
   useEffect(() => {
     if (!!account && !!library) {
@@ -38,6 +41,9 @@ const Balance = () => {
         : balance
         ? `${parseFloat(formatEther(balance)).toFixed(2)} ETH`
         : ''}
+      {ethExchangeRate != null && balance != null &&
+        `  ($${(ethExchangeRate * parseFloat(formatEther(balance))).toFixed(2)})`
+      }
     </Box>
   );
 };
