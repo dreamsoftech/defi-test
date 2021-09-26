@@ -11,7 +11,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header />
-      <Container maxWidth="md">
+      <Container maxWidth="sm">
         <main>
           {children}
         </main>

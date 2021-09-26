@@ -12,6 +12,8 @@ import store from '../redux/store'
 
 import Layout from '../components/Layout'
 
+import { Web3ReactProvider } from '@web3-react/core'
+import { getLibrary } from '../context'
 
 const MyApp = (props: AppProps) => {
   const { Component, pageProps } = props
@@ -30,14 +32,16 @@ const MyApp = (props: AppProps) => {
         <title>Defi Test app</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
-      <Provider store={store}>
+      <Web3ReactProvider getLibrary={getLibrary}>
         <ThemeProvider theme={lightTheme}>
-          <CssBaseline />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Provider store={store}>
+            <CssBaseline />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </Provider>
         </ThemeProvider>
-      </Provider>
+      </Web3ReactProvider>
     </>
   )
 }

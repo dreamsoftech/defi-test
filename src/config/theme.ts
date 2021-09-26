@@ -1,7 +1,8 @@
-import { createMuiTheme, ThemeOptions } from '@material-ui/core'
+import { createTheme, ThemeOptions } from '@material-ui/core'
+import { deepPurple, lightBlue } from '@material-ui/core/colors'
 
 export const paletteColorsDark = {
-  primary: '#0f4c75',
+  primary: deepPurple[500],
   secondary: '#3282b8',
   error: '#E44C65',
   background: '#1b262c',
@@ -9,7 +10,7 @@ export const paletteColorsDark = {
 }
 
 export const paletteColorsLight = {
-  primary: '#6886c5',
+  primary: lightBlue[500],
   secondary: '#ffe0ac',
   error: '#E44C65',
   background: '#f9f9f9',
@@ -27,5 +28,5 @@ const options = (dark: boolean): ThemeOptions => {
     }
   }
 }
-export const darkTheme = createMuiTheme(options(true))
-export const lightTheme = createMuiTheme(options(false))
+export const darkTheme = createTheme(options(true))
+export const lightTheme = createTheme(options(false))
